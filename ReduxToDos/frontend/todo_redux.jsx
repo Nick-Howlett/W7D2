@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
-import {receiveToDos, receiveToDo} from './actions/todo_actions'
+import {receiveToDos, receiveToDo} from './actions/todo_actions';
+import Root from './components/root.jsx';
+import allTodos from './reducers/selectors'
 
-const store = configureStore();
+
 
 document.addEventListener('DOMContentLoaded', () => {
+  const store = configureStore();
   const root = document.getElementById('root');
   window.store = store;
   window.receiveToDo = receiveToDo
   window.receiveToDos = receiveToDos
-  ReactDOM.render(<h1>TODO Zap!</h1>, root );
+  window.allTodos = allTodos
+  ReactDOM.render(<Root store={store} />, root );
 })
